@@ -5,10 +5,16 @@ FROM python:3.8
 WORKDIR /app
 
 # Copy the application files into the working directory
-COPY . .
+COPY requirements.txt ./requirements.txt
 
 # Install the application dependencies
 RUN pip install -r requirements.txt
 
+EXPOSE 8501
+
+COPY . /app
+
+
 # Define the entry point for the container
-CMD ["streamlit", "run", "app.py", "0.0.0.0:8000"]
+ENTRYPOINT ["streamlit","run"]
+CMD ["app.py"]
